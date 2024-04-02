@@ -2,7 +2,10 @@ package ensitpfa.backendhl.Models;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -16,14 +19,17 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Document("user")
 
 
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private     String lastName;
+    public     String lastName;
     private     String firstName;
     private     String email;
     private     String password;
