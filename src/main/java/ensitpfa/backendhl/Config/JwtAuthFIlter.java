@@ -26,6 +26,7 @@ import java.util.Optional;
 public class JwtAuthFIlter extends OncePerRequestFilter {
     private final JwtService jwtService; //to manipulate JWTtoken
     final private UserDetailsService userDetailsService;
+    final private TokenRepository tokenRepository;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
@@ -33,10 +34,10 @@ public class JwtAuthFIlter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain)
             throws ServletException, IOException
     {
-        if(request.getServletPath().contains("12")){
-            filterChain.doFilter(request,response);
-            return;
-        }
+//        if(request.getServletPath().contains("12")){
+//            filterChain.doFilter(request,response);
+//            return;
+//        }
         final String authHeader=request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
@@ -49,7 +50,13 @@ public class JwtAuthFIlter extends OncePerRequestFilter {
         if(userEmail!=null&& SecurityContextHolder.getContext().getAuthentication()==null)
         {
             UserDetails user=this.userDetailsService.loadUserByUsername(userEmail);
-            if(jwtService.isTokenValid(jwt,user)){
+
+            var tokenValidation=tokenRepository.findTokenBy(jwt).map(
+                    Token::isLoggedOut
+            ).orElse(true);
+
+
+            if((jwtService.isTokenValid(jwt,user))&&!tokenValidation){
                 UsernamePasswordAuthenticationToken authToken=
                         new UsernamePasswordAuthenticationToken(user,
                                 null,
