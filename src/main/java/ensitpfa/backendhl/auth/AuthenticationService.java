@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
     final UserRepository userRepository;
     final PasswordEncoder passwordEncoder;
-    private JwtService jwtService;
-    private AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest registerRequest){
         var user= User.builder().firstName(registerRequest.getFirstName())

@@ -9,15 +9,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
-import java.util.Base64;
-import java.util.Date;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
-   private static String secretKey="6121503e75214a4e2d3c5e352f3a383a346c2161773e283e3b542a7a79";
+   private static String secretKey="BE2CD84D495D7C8E2C446D5D9E74B15A25664C7585586B654C848E";
 
     public String extractEmail(String token){
 return extractclaim(token,Claims::getSubject);
@@ -33,7 +30,7 @@ return extractclaim(token,Claims::getSubject);
                 .parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
-                .parseClaimsJwt(token) //checking
+                .parseClaimsJws(token) //checking
                 .getBody();
     }
     public <T> T extractclaim(String token, Function<Claims,T> claimResolver){
@@ -47,8 +44,8 @@ return extractclaim(token,Claims::getSubject);
 
 ////////////////////////////////////////////////////////////
     public String generateToken(UserDetails userDetails)
-    {
-        return generateToken(null,userDetails);
+    {Map<String, Object> claims = new HashMap<>();
+        return generateToken(claims,userDetails);
     }
     public String generateToken(
             Map<String,Object> extraClaims,
