@@ -35,6 +35,12 @@ public class User implements UserDetails {
     private     String password;
     @Enumerated(EnumType.STRING)
     private Config.Role role;
+    private Integer age;
+    private Integer gender;
+    private Integer height;
+    private Integer weight;
+    private Device connectedDevice;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

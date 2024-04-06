@@ -23,9 +23,14 @@ public class AuthenticationService {
     private final TokenRepository tokenRepository;
 
     public AuthenticationResponse register(RegisterRequest registerRequest){
-        var user= User.builder().firstName(registerRequest.getFirstName())
+        var user= User.builder()
+                .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
                 .email(registerRequest.getEmail())
+                .gender(registerRequest.getGender())
+                .height(registerRequest.getHeight())
+                .age(registerRequest.getAge())
+                .weight(registerRequest.getWeight())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(Role.USER)
                 .build();

@@ -1,5 +1,6 @@
 package ensitpfa.backendhl.Config;
 
+import Config.Role;
 import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +34,8 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/path/**")
                         .permitAll().anyRequest().authenticated()
+                        .requestMatchers("/admin/**").hasRole(String.valueOf(Role.ADMIN))
+                        .anyRequest().hasRole(String.valueOf(Role.USER))
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
