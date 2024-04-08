@@ -25,11 +25,8 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
-    public void createUser(User user) {
-        userRepository.save(user);
-    }
 
-    public User updateUser(String id, User user) {
+    public User editUser(String id, User user) {
         if (userRepository.existsById(id)) {
             user.setId(id);
             return userRepository.save(user);
@@ -40,5 +37,8 @@ public class UserService {
 
     public void deleteUser(String id) {
         userRepository.deleteById(id);
+    }
+    public void checkStatistics(){
+        return;
     }
 }

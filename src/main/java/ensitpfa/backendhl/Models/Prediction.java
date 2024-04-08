@@ -17,4 +17,6 @@ public class Prediction {
     private String id;
     private Date timeStamp;
     private String message;
+    private User user;
+    private Device device;
 }

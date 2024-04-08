@@ -20,7 +20,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") String id,@RequestBody User user){
-        return Optional.of(userService.updateUser(id, user))
+        return Optional.of(userService.editUser(id, user))
                 .map(updatedUser -> new ResponseEntity<>(updatedUser, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

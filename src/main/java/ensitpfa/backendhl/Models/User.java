@@ -40,6 +40,8 @@ public class User implements UserDetails {
     private Integer height;
     private Integer weight;
     private Device connectedDevice;
+    private List<HealthData> healthDataList;
+
 
 
     @Override
