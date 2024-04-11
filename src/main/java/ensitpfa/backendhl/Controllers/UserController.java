@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("ADMIN//api/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired

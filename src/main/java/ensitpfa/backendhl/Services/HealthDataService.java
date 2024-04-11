@@ -26,7 +26,7 @@ public class HealthDataService  {
     }
 
     public void updateData(String id, HealthData newData) {
-        newData.setId(id); // Ensure the new data has the same ID as the existing one
+        newData.setId(id);
         repository.save(newData);
     }
 

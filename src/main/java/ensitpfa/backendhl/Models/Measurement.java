@@ -17,11 +17,11 @@ public class Measurement {
     @Id
     @GeneratedValue
     private String id;
+    private User connectedUser;
     private Date timestamp;
     private Integer restingBP;
     private Integer restingElectro;
     private Integer maxHeartRate;
     private Double oldPeak;
     private Integer slope;
-    private Device device;
 }

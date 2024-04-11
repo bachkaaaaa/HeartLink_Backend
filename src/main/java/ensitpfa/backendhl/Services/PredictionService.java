@@ -26,7 +26,7 @@ public class PredictionService {
     }
 
     public void updateItem(String id, Prediction newItem) {
-        newItem.setId(id); // Ensure the new item has the same ID as the existing one
+        newItem.setId(id);
         repository.save(newItem);
     }
 
