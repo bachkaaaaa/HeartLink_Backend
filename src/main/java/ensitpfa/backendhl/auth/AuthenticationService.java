@@ -4,10 +4,9 @@ import Config.Role;
 import ensitpfa.backendhl.Config.JwtService;
 import ensitpfa.backendhl.Config.Token;
 import ensitpfa.backendhl.Config.TokenRepository;
-import ensitpfa.backendhl.Models.User;
-import ensitpfa.backendhl.Repositories.UserRepository;
+import ensitpfa.backendhl.Models.Patient;
+import ensitpfa.backendhl.Repositories.PatientRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,14 +15,14 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    final UserRepository userRepository;
+    final PatientRepository userRepository;
     final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final TokenRepository tokenRepository;
 
     public AuthenticationResponse register(RegisterRequest registerRequest){
-        var user= User.builder()
+        var user= Patient.builder()
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
                 .email(registerRequest.getEmail())
@@ -46,7 +45,7 @@ public class AuthenticationService {
                         (authenticationRequest.getEmail(),
                                 authenticationRequest.getPassword())
         );
-        var user=userRepository.findUserByEmail(authenticationRequest.getEmail())
+        var user=userRepository.findPatientByEmail(authenticationRequest.getEmail())
                 .orElseThrow();
         var jwtToken=jwtService.generateToken(user);
         var token= Token

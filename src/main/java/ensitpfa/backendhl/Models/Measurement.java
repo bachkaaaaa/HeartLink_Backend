@@ -17,7 +17,7 @@ public class Measurement {
     @Id
     @GeneratedValue
     private String id;
-    private User connectedUser;
+    private Patient connectedUser;
     private Date timestamp;
     private Integer restingBP;
     private Integer restingElectro;

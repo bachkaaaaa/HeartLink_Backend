@@ -1,7 +1,7 @@
 package ensitpfa.backendhl.Controllers;
 
 import ensitpfa.backendhl.Models.Device;
-import ensitpfa.backendhl.Models.User;
+import ensitpfa.backendhl.Models.Patient;
 import ensitpfa.backendhl.Services.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,17 +43,17 @@ public class DeviceController {
     }
 
     @PostMapping("/{mac}/connect")
-    public void connect(@PathVariable String mac, @RequestBody User user) {
+    public void connect(@PathVariable String mac, @RequestBody Patient user) {
         deviceService.connect(mac, user);
     }
 
     @PostMapping("/{mac}/disconnect")
-    public void disconnect(@PathVariable String mac, @RequestBody User user) {
+    public void disconnect(@PathVariable String mac, @RequestBody Patient user) {
         deviceService.disconnect(mac, user);
     }
 
     @PostMapping("/{mac}/measurementInterval")
-    public void setMeasurementInterval(@PathVariable String mac, @RequestBody User user, @RequestBody Period interval) {
+    public void setMeasurementInterval(@PathVariable String mac, @RequestBody Patient user, @RequestBody Period interval) {
         deviceService.setMeasurementIntervalle(mac, user, interval);
     }
 }

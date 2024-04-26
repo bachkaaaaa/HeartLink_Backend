@@ -11,8 +11,8 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("Prediction")
-public class Prediction {
+@Document("Alert")
+public class Alert {
     @Id
     private String id;
     private Date timeStamp;

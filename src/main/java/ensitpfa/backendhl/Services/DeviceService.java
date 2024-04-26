@@ -1,16 +1,13 @@
 package ensitpfa.backendhl.Services;
 
 import ensitpfa.backendhl.Models.Device;
-import ensitpfa.backendhl.Models.User;
+import ensitpfa.backendhl.Models.Patient;
 import ensitpfa.backendhl.Repositories.DeviceRepository;
-import ensitpfa.backendhl.Repositories.DeviceRepository;
-import ensitpfa.backendhl.Repositories.MeasurementRepository;
-import ensitpfa.backendhl.Repositories.MeasurementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.time.Period;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +44,7 @@ public class DeviceService {
     }
 
 
-    public void connect(String mac, User user){
+    public void connect(String mac, Patient user){
         Device device=deviceRepository.findDeviceById(mac);
 
         if((device!=null)
@@ -61,7 +58,7 @@ public class DeviceService {
 
         }
 
-    public void disconnect(String mac, User user){
+    public void disconnect(String mac, Patient user){
         Device device=deviceRepository.findDeviceById(mac);
         if((device!=null)
                 &&device.isConnected()){
@@ -77,7 +74,7 @@ public class DeviceService {
 
     }
 
-    public void setMeasurementIntervalle(String mac, User user,Period interval ) {
+    public void setMeasurementIntervalle(String mac, Patient user, Period interval ) {
         Device device=deviceRepository.findDeviceById(mac);
         if((device!=null)
                 &&device.isConnected()){

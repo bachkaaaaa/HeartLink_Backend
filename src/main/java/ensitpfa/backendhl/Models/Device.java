@@ -23,7 +23,7 @@ public class Device {
     private String id;
     private boolean isConnected;
     private Period measureIntervalle;
-    private User connectedUser;
+    private Patient connectedUser;
     private List<Measurement> measurementList;
 
 }

@@ -22,10 +22,10 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("user")
+@Document("Patient")
 
 
-public class User implements UserDetails {
+public class Patient implements UserDetails {
     @Id
     @GeneratedValue
     public String id;
@@ -40,7 +40,6 @@ public class User implements UserDetails {
     private Integer height;
     private Integer weight;
     private Device connectedDevice;
-    private List<HealthData> healthDataList;
 
 
 
