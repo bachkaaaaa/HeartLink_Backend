@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/backenfHL-0.0.1-SNAPSHOT.jar backenfHL.jar
+COPY --from=build /target/backendHL-0.0.1-SNAPSHOT.jar backendHL.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","backenfHL.jar"]
+ENTRYPOINT ["java","-jar","backendHL.jar"]
