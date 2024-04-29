@@ -16,13 +16,6 @@ public class PatientService {
         return patientRepository.findPatientByRole(Config.Role.USER);
     }
 
-    public Optional<Patient> getUserById(String id) {
-        return patientRepository.findById(id);
-    }
-    public  Optional<Patient> getUserByEmail(String email) {
-
-        return patientRepository.findPatientByEmail(email);
-    }
 
 
 

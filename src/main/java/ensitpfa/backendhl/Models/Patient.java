@@ -39,7 +39,7 @@ public class Patient implements UserDetails {
     private Integer gender;
     private Integer height;
     private Integer weight;
-    private Device connectedDevice;
+    private List<Device> connectedDevice;
 
 
 

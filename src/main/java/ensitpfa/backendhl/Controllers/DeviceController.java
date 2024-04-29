@@ -22,25 +22,12 @@ public class DeviceController {
         return deviceService.getAllDevices();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Device> getDeviceById(@PathVariable String id) {
-        return deviceService.getDeviceById(id);
-    }
-
     @PostMapping
     public Device addDevice(@RequestBody Device device) {
         return deviceService.addDevice(device);
     }
 
-    @PutMapping("/{id}")
-    public void updateDevice(@PathVariable String id, @RequestBody Device newDevice) {
-        deviceService.updateDevice(id, newDevice);
-    }
 
-    @DeleteMapping("/{id}")
-    public void deleteDevice(@PathVariable String id) {
-        deviceService.deleteDevice(id);
-    }
 
     @PostMapping("/{mac}/connect")
     public void connect(@PathVariable String mac, @RequestBody Patient user) {
@@ -48,8 +35,8 @@ public class DeviceController {
     }
 
     @PostMapping("/{mac}/disconnect")
-    public void disconnect(@PathVariable String mac, @RequestBody Patient user) {
-        deviceService.disconnect(mac, user);
+    public void disconnect(@PathVariable String mac) {
+        deviceService.disconnect(mac);
     }
 
     @PostMapping("/{mac}/measurementInterval")

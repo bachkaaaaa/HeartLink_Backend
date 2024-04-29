@@ -20,14 +20,10 @@ public class MeasurementController {
         return measurementService.getAllMeasurements();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Measurement> getMeasurementById(@PathVariable String id) {
-        return measurementService.getMeasurementById(id);
-    }
 
-    @GetMapping("/connectedUser/{connectedUserId}")
-    public List<Measurement> getMeasurementsByConnectedUserId(@PathVariable String connectedUserId) {
-        return measurementService.getMeasurementsByConnectedUserId(connectedUserId);
+    @GetMapping("/connectedUser/{deviceId}")
+    public List<Measurement> getMeasurementsByConnectedUserId(@PathVariable String deviceId) {
+        return measurementService.findAllByDeviceId(deviceId);
     }
 
     @PostMapping
@@ -35,13 +31,7 @@ public class MeasurementController {
         return measurementService.createMeasurement(measurement);
     }
 
-    @PutMapping("/{id}")
-    public void updateMeasurement(@PathVariable String id, @RequestBody Measurement newMeasurement) {
-        measurementService.updateMeasurement(id, newMeasurement);
-    }
 
-    @DeleteMapping("/{id}")
-    public void deleteMeasurement(@PathVariable String id) {
-        measurementService.deleteMeasurement(id);
-    }
+
+
 }

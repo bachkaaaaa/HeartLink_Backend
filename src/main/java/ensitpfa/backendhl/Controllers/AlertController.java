@@ -17,26 +17,18 @@ public class AlertController {
 
     @GetMapping
     public List<Alert> getAllItems() {
-        return AlertService.getAllItems();
+        return AlertService.getAllAlerts();
     }
 
     @GetMapping("/{id}")
-    public Optional<Alert> getItemById(@PathVariable String id) {
-        return AlertService.getItemById(id);
+    public Optional<Alert> getAlertByPatientId(@PathVariable String id) {
+        return AlertService.getAlertByPatientId(id);
     }
 
     @PostMapping
     public Alert createItem(@RequestBody Alert item) {
-        return AlertService.createItem(item);
+        return AlertService.createAlert(item);
     }
 
-    @PutMapping("/{id}")
-    public void updateItem(@PathVariable String id, @RequestBody Alert newItem) {
-        AlertService.updateItem(id, newItem);
-    }
 
-    @DeleteMapping("/{id}")
-    public void deleteItem(@PathVariable String id) {
-        AlertService.deleteItem(id);
-    }
 }

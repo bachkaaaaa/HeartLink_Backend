@@ -8,8 +8,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.time.Period;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DeviceService {
@@ -26,22 +25,16 @@ public class DeviceService {
         return deviceRepository.findAll();
     }
 
-    public Optional<Device> getDeviceById(String id) {
-        return deviceRepository.findById(id);
-    }
-
     public Device addDevice(Device device) {
         return deviceRepository.save(device);
     }
+
 
     public void updateDevice(String id, Device newDevice) {
         newDevice.setId(id);
         deviceRepository.save(newDevice);
     }
 
-    public void deleteDevice(String id) {
-        deviceRepository.deleteById(id);
-    }
 
 
     public void connect(String mac, Patient user){
@@ -51,24 +44,24 @@ public class DeviceService {
                 &&(!device.isConnected())){
 
                     device.setConnected(true);
-                    device.setConnectedUser(user);
-                    device.setMeasurementList(measurementService.getMeasurementsByConnectedUserId(user.getId()));
+                    device.getConnectedUser().put(user,System.currentTimeMillis());
+                    device.setMeasurementList(measurementService.findAllByDeviceId(mac));
                     updateDevice(mac,device);
+                    user.setConnectedDevice(new ArrayList<>((Collection) device));
                 }
 
         }
 
-    public void disconnect(String mac, Patient user){
+    public void disconnect(String mac){
         Device device=deviceRepository.findDeviceById(mac);
         if((device!=null)
                 &&device.isConnected()){
 
-            if (user.equals(device.getConnectedUser())){
+
                 device.setConnected(false);
-                device.setConnectedUser(null);
                 device.setMeasurementList(null);
                 updateDevice(mac,device);
-            }
+
 
         }
 
@@ -79,10 +72,10 @@ public class DeviceService {
         if((device!=null)
                 &&device.isConnected()){
 
-            if (user.equals(device.getConnectedUser())){
+
                 device.setMeasureIntervalle(interval);
                 updateDevice(mac,device);
-            }
+
 
         }
 

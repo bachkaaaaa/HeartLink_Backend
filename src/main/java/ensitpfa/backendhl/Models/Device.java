@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Period;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Data
@@ -23,7 +24,7 @@ public class Device {
     private String id;
     private boolean isConnected;
     private Period measureIntervalle;
-    private Patient connectedUser;
+    private HashMap<Patient,Long> connectedUser;
     private List<Measurement> measurementList;
 
 }

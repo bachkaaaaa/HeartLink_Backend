@@ -18,24 +18,14 @@ public class MeasurementService {
         return repository.findAll();
     }
 
-    public Optional<Measurement> getMeasurementById(String id) {
-        return repository.findById(id);
-    }
 
-    public List<Measurement> getMeasurementsByConnectedUserId(String connectedUserId) {
-        return repository.findAllByConnectedUserId(connectedUserId);
+    public List<Measurement> findAllByDeviceId(String connectedUserId) {
+        return repository.findAllByDeviceId(connectedUserId);
     }
 
     public Measurement createMeasurement(Measurement measurement) {
         return repository.save(measurement);
     }
-
-    public void updateMeasurement(String id, Measurement newMeasurement) {
-        newMeasurement.setId(id);
-        repository.save(newMeasurement);
-    }
-
-    public void deleteMeasurement(String id) {
-        repository.deleteById(id);
-    }
 }
+
+
